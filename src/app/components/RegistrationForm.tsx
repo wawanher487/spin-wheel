@@ -22,7 +22,6 @@ export default function RegistrationForm({onSubmit}: Props) {
     const {error} = await supabase.from("users").insert({
         name,
         email,
-        language: "bilingual",
     });
 
     if(error) {

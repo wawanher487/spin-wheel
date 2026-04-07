@@ -134,7 +134,7 @@ export default function Home() {
 
             <button
               onClick={resetGame}
-              className="mt-6 w-full bg-[var(--color-primary)] hover:bg-[var(--color-secondary)] text-white py-2 rounded-lg transition"
+              className="mt-6 w-full bg-primary hover:bg-secondary text-white py-2 rounded-lg transition"
             >
               Next Peserta
             </button>
