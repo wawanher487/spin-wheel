@@ -1,7 +1,7 @@
 import { supabase } from "./supabase";
 
 export const getAvailablePrizes = async () => {
-    const { data, error } = await supabase.from("stock").select("*").gt("quantity", 0);
+    const { data, error } = await supabase.from("stock").select("*").select("*").gt("quantity", 0);
 
     if (error) {
         console.error("ERROR SUPABASE:", error);
@@ -13,11 +13,11 @@ export const getAvailablePrizes = async () => {
 
 
 
-export const decreasePrizeStock = async (id: string) => {
+export const decreasePrizeStock = async (itemName: string) => {
     const { data, error } = await supabase
         .from("stock")
-        .select("quantity")
-        .eq("id", id)
+        .select("id, quantity")
+        .eq("item", itemName)
         .single();
 
     if (error || !data) {
@@ -32,7 +32,7 @@ export const decreasePrizeStock = async (id: string) => {
         .update({
         quantity: data.quantity - 1,
         })
-        .eq("id", id);
+        .eq("id", data.id);
 
     if (updateError) {
         console.error("ERROR UPDATE:", updateError);
